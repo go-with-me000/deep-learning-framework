@@ -1,0 +1,40 @@
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  .login-box {
+    background: rgba(255, 255, 255, .9);
+    width: 300px;
+    height: 250px;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    position: relative;
+    .row {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .login-title {
+      font-size: 1.8rem;
+      font-weight: normal;
+      //margin-top:1rem;
+    }
+    .input {
+      height: 2.5rem;
+      font-size: 1rem;
+      width: 80%;
+      padding: .5rem;
+      border: rgba(0, 0, 0, .2) solid 1px;
+    }
+    .submit {
+      border: none;
+      background: #FC3838;
+      width: 100%;
+      bottom:0;
+      position: absolute;
+      height:50px;
+      color:white;
+      font-size: 1.5rem;
+    }
+  }
+}

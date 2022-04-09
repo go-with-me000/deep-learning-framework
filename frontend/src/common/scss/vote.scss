@@ -1,0 +1,174 @@
+//.page-wrapper, .wrapper {
+//  height: 100%;
+//}
+
+.blue {
+  background: #E0EEFC;
+}
+
+.blue-right {
+  border-right: 1.5px solid #E0EEFC;
+}
+
+.gray{
+  background: #FFFFFF
+}
+
+.gray-right {
+  border-right: 1.5px solid #FFFFFF;
+}
+
+.first-row {
+  padding: .3rem 1rem;
+}
+
+tr th {
+  //background: #E0EEFC;
+  font-size: 1rem;
+  line-height: 1.2em;
+  border-bottom: 1.5px solid #E0EEFC;
+}
+
+table {
+  border: 1.5px solid #E0EEFC;
+  .headers {
+    height: 3rem;
+  }
+}
+
+.name {
+  //width: 8em;
+  //margin:auto;
+  text-align-last: justify;
+  text-align: justify;
+
+}
+
+tr {
+  height: 1rem;
+}
+
+td {
+  font-size: 1.2rem;
+  border-bottom: 1.5px solid #E0EEFC;
+  .radios {
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+  }
+}
+
+.count {
+  margin: .5rem 0 .5rem 1rem;
+}
+
+.count p {
+  font-size: 16px;
+}
+
+tr, th, td {
+  //width:6em;
+  padding: .3rem 8%;
+
+  line-height: 1.2em;
+}
+
+.percentage-td {
+  font-size: .85rem;
+  padding: {
+    left: .1rem;
+    right: .1rem;
+  }
+}
+
+.count-index-span {
+  font-size: .9em;
+  &:not(:first-of-type):before {
+    content: "，";
+    font-size: .8em;
+  }
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  //align-items: center;
+  .vote-title {
+    font-size: 1.6rem;
+    text-align: center;
+    //margin-bottom: 1.6rem;
+  }
+  .vote-box {
+    position: relative;
+    //top: 130px;
+    background: white;
+    padding: 2rem;
+    border-radius: .8rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, .1);
+    width: 100%;
+    .vote-vice-title {
+      display: flex;
+      justify-content: space-between;
+      .switch-box, .count {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 1rem;
+      }
+    }
+    .table-box {
+      //max-height: 400px;
+      //overflow-y: scroll;
+      //overflow-x: auto;
+      text-align: center;
+      .vote-table {
+        width: 100%;
+      }
+    }
+
+  }
+  .submit-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    .submit {
+      max-height: 52px; //无奈之举
+      border: none;
+      background: #FF3333;
+      font-size: 1.5rem;
+      @media screen and (max-width: 600px) {
+        font-size: 1.2rem;
+        padding: .35rem 2rem;
+      }
+      color: white;
+      padding: .5rem 4rem;
+      border-radius: .7rem;
+      margin: 0 1rem;
+    }
+  }
+}
+
+.demo-spin-icon-load {
+  animation: ani-demo-spin 1s linear infinite;
+}
+
+@keyframes ani-demo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.demo-spin-col {
+  height: 100px;
+  position: relative;
+  border: 1px solid #eee;
+}
+
+.deep-background {
+  background-color: rgb(252, 250, 246);
+}

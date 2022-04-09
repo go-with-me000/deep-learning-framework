@@ -34,3 +34,13 @@ def train(request,sid,name):
         '诊断': '上呼吸道感染',
     }
     return JsonResponse(data)
+def getDataset(request):
+    name2label = {}
+    path="D:\programming\python\deep-learning-exam\graduation\django\deep\myapp\dataset"
+    for name in sorted(os.listdir(path)):
+
+        name2label[len(name2label.keys())] = name
+
+    print(name2label)
+    print(os.getcwd())
+    return JsonResponse(name2label)

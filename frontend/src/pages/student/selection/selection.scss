@@ -1,0 +1,117 @@
+#coursesTable {
+    // padding: 5px 10px;
+    background: #ffffff;
+}
+
+.Courses-head {
+    background-color: #ffffff;
+    
+}
+
+.Courses-head > div {
+    text-align: center;
+    font-size: 14px;
+    line-height: 28px;
+    padding:5px;
+}
+
+.left-hand-TextDom, .Courses-head {
+    background-color: #ffffff;
+    height:40px;
+}
+
+.Courses-leftHand {
+    background-color: #ffffff;
+    font-size: 12px;
+}
+
+.Courses-leftHand .left-hand-index {
+    color: #9c9c9c;
+    margin-bottom: 4px !important;
+}
+
+.Courses-leftHand .left-hand-name {
+    color: #666;
+}
+
+.Courses-leftHand p {
+    text-align: center;
+    font-weight: 900;
+}
+
+.Courses-head > div {
+    border-left: none !important;
+}
+
+.Courses-leftHand > div {
+    padding-top: 5px;
+    // border-bottom: 1px dashed rgb(219, 219, 219);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.089) inset;
+}
+
+.Courses-leftHand > div:last-child {
+    border-bottom: none !important;
+}
+
+.left-hand-TextDom, .Courses-head {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.Courses-content > ul {
+    // border-bottom: 1px dashed rgb(219, 219, 219);
+    box-sizing: border-box;
+}
+
+.Courses-content > ul:last-child {
+    border-bottom: none !important;
+}
+
+.highlight-week {
+    color: #0837d4 !important;
+}
+
+.Courses-content li {
+    text-align: center;
+    color: #666666;
+    font-size: 14px;
+    line-height: 50px;
+   
+}
+
+.Courses-content ul:nth-child(even){
+    background-color: #cac7c7ea;
+    border-radius: 4px;
+    border-style: none;
+    // box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2) inset;
+}
+
+.Courses-content ul:nth-child(odd){
+    background: rgba(241, 241, 241, 0.377) !important;
+    // box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.089) inset;
+}
+
+.Courses-content li span {
+    padding: 6px 2px;
+    box-sizing: border-box;
+    line-height: 18px;
+    border-radius: 4px;
+    white-space: normal;
+    word-break: break-all;
+    cursor: pointer;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.089) inset;
+    
+}
+.grid-active {
+    z-index: 9999;
+}
+
+.grid-active span {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#choose-box{
+    border: 1px solid rgba(223, 223, 223, 0.658);
+    padding:10px;
+    margin:10px;
+    margin-top:0px;
+}

@@ -1,5 +1,7 @@
 import os
 import sys
+from json.decoder import JSONArray
+
 import torch
 from torch.utils.data import DataLoader
 from torch import nn, optim
@@ -7,12 +9,13 @@ from torchvision.models import resnet18
 from .utils import Flatten
 from .DataLoaders import DataLoaders
 from django.http import HttpResponse, JsonResponse
+from array import *
 
 batchsz = 32
 lr = 1e-3
-epochs = 1
 device = torch.device("cuda")
 torch.manual_seed(1234)
+myarray=array("l")
 abs_path = os.getcwd()
 abs_path = abs_path+'\\myapp\\'
 
@@ -53,7 +56,8 @@ def evalute(model, loader):
     return correct / total
 
 
-def train(model, isFirst):
+def train(model, isFirst,epochs):
+    clearArray()
     if isFirst == 0:
         model.load_state_dict(torch.load(model_name))
     optimizer = optim.Adam(model.parameters(), lr=lr)
@@ -69,6 +73,9 @@ def train(model, isFirst):
             optimizer.step()
         if epoch % 1 == 0:
             val_acc = evalute(model, val_loader)
+            global myarray
+            acc = int(val_acc *100)
+            myarray.append(acc)
             if val_acc > best_acc:
                 best_epoch = epoch
                 best_acc = val_acc
@@ -91,6 +98,16 @@ def test(model):
         'test_acc':test_acc
     }
     return data
+def clearArray():
+    global myarray
+    myarray=[]
+def sendarray(request):
+    global myarray
+    number = list(myarray)
+    data ={
+        "key":number
+    }
+    return JsonResponse(data)
 
 def load_list(root):
     name2label = {}
@@ -119,7 +136,7 @@ def init(model_names, dataset_names):
     test_loader = DataLoader(test_db, batch_size=batchsz, num_workers=1)
     val_loader = DataLoader(val_db, batch_size=batchsz, num_workers=2)
 
-def main(request, isTrain, dataset_names, model_names, isFirst):
+def main(request, isTrain, dataset_names, model_names, isFirst,epoch):
 
     init(model_names, dataset_names)
     # model = ResNet18(5).to(device)
@@ -134,9 +151,10 @@ def main(request, isTrain, dataset_names, model_names, isFirst):
                           ).to(device)
     data =""
     if isTrain == 1:
-        data = train(model, isFirst)
+        data = train(model, isFirst,epoch)
     else:
         data = test(model)
 
     return JsonResponse(data)
+
 

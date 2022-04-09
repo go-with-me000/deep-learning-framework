@@ -1,0 +1,66 @@
+.action {
+    height: 7vh;
+    left: 0%;
+    width: 92%;
+    margin-top: 0%;
+    position: relative;
+    /* background-color: blueviolet; */
+  }
+  .Table {
+    width: 92%;
+    /* height: 65vh; */
+    position: relative;
+    /* left: 5%; */
+    /* top: -2%; */
+    /* background-color: aquamarine; */
+  }
+  .tablemain {
+    border-radius: 10px;
+    -moz-box-shadow: 2px 2px 1px #585858;
+    -webkit-box-shadow: 2px 2px 1px #666565;
+    box-shadow: 1px 1px 4px #7c7e7e;
+  }
+  .demo-upload-list {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    position: relative;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    margin-right: 4px;
+  }
+  .demo-upload-list img {
+    width: 100%;
+    height: 100%;
+  }
+  .demo-upload-list-cover {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .demo-upload-list:hover .demo-upload-list-cover {
+    display: block;
+  }
+  .demo-upload-list-cover i {
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 2px;
+  }
+  .bottomButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* height: 7vh; */
+  }
+  .ivu-tabs-mini .ivu-tabs-tab {
+    font-size: 20px;
+  }

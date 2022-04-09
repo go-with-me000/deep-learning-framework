@@ -36,6 +36,14 @@
             <artifactId>json</artifactId>
             <version>20201115</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.oreilly.servlet/com.springsource.com.oreilly.servlet -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
+
 
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->

@@ -1,0 +1,125 @@
+.lists {
+  background: #fff;
+  padding: 30px;
+  cursor: pointer;
+  margin-bottom: 30px;
+
+  .title {
+    font-size: 35px;
+  }
+
+  .small-item {
+    color: rgb(165, 164, 164);
+    font-size: 16px;
+  }
+}
+
+.neural {
+  min-height: 80px;
+  // background: #000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.lists:hover {
+  box-shadow: 0px 0px 20px #b9b9b9;
+  transition: all 800ms
+}
+
+
+.tabs {
+  margin: 30px;
+
+  .title {
+    font-size: 40px;
+  }
+
+  .basic {
+    margin-top: 20px;
+
+    .basic-item {
+      color: rgb(160, 160, 160);
+    }
+
+    font-size:30px !important;
+    color:#000;
+  }
+
+  .desc {
+    margin-top: 40px;
+
+    .desc-title {
+      font-size: 25px;
+    }
+
+    .description {
+      text-indent: 2em;
+      line-height: 25px;
+      font-size: 16px;
+      padding-top: 10px;
+
+    }
+  }
+
+  .img {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 100px;
+    top: 20px;
+
+  }
+
+  .train {
+    min-height: 400px;
+    margin-top: 40px;
+    // background: rgb(245, 244, 244);
+
+    .train-input {
+      // position: relative;
+      display: flex;
+      justify-content: center;
+      margin: 30px;
+      margin-top: 50px;
+    }
+
+    .train-bottom {
+      display: flex;
+      justify-content: center;
+      margin: 30px;
+      margin-top: 60px;
+      width: 64%;
+      margin-left: 18%;
+    }
+
+  }
+
+  .test {
+    min-height: 400px;
+
+    // background: #000;
+    .test-res {
+      font-size: 18px;
+      margin-top: 50px;
+      margin-left: 30px;
+
+    }
+
+    .upload {
+      margin-top: 50px;
+      margin-left: 30px;
+    }
+  }
+
+
+}
+
+.desc-title {
+  font-size: 25px;
+}
+
+
+.buttons {
+  margin-left: 13%;
+  margin-top: 30px;
+}

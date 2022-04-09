@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "HYShangWeiShouShuW";
+  src: url('../../common/fonts/HYShangWeiShouShuW/HYShangWeiShouShuW.eot') format('embedded-opentype'),
+  url('../../common/fonts/HYShangWeiShouShuW/HYShangWeiShouShuW.woff2') format('woff2'), url('../../common/fonts/HYShangWeiShouShuW/HYShangWeiShouShuW.woff') format('woff'), url('../../common/fonts/HYShangWeiShouShuW/HYShangWeiShouShuW.ttf') format('truetype'),
+  url('../../common/fonts/HYShangWeiShouShuW/HYShangWeiShouShuW.svg#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

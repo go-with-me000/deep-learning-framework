@@ -1,0 +1,23 @@
+$btn-color: #FB5A5A;
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  .choice {
+    font-family: 'HYShangWeiShouShuW';
+    height: 100px;
+    width: 300px;
+    background: $btn-color;
+    margin: 3rem;
+    text-align: center;
+    line-height: 100px;
+    font-size:1.8rem;
+    color:white;
+    border-radius:.8rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,.4);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

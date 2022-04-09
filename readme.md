@@ -24,16 +24,18 @@ http://127.0.0.1:8085/myapp/test/pika.jpg/pokeman/best2.mdl
 
 - ##### 是否是第一次   1——第一次   0 不是第一次
 
-###### python train.py 0 pokeman pokeman.mdl 0 
+- epoch，轮数
+
+###### python train.py 0 pokeman pokeman.mdl 0  2
 
 - 1-1代表着第一次训练
 - 0-1不训练却是第一次，不存在
 - 1-0不是第一次，但是要训练，这次情况
 - 0-0不是第一次也不训练，测试模型
 
-http://127.0.0.1:8085/myapp/train/1/pokeman/pokeman.mdl/1
+http://127.0.0.1:8085/myapp/train/1/pokeman/pokeman.mdl/1/1
 
-http://127.0.0.1:8085/myapp/train/1/pokeman/pokeman.mdl/0
+http://127.0.0.1:8085/myapp/train/1/pokeman/pokeman.mdl/0/2
 
 http://127.0.0.1:8085/myapp/train/0/pokeman/pokeman.mdl/0
 
