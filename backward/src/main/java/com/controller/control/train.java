@@ -33,9 +33,9 @@ public class train {
             // 设置连接方式：get
             connection.setRequestMethod("GET");
             // 设置连接主机服务器的超时时间：15000毫秒
-            connection.setConnectTimeout(150000);
+            connection.setConnectTimeout(1500000);
             // 设置读取远程返回的数据时间：60000毫秒
-            connection.setReadTimeout(600000);
+            connection.setReadTimeout(6000000);
             // 发送请求
             connection.connect();
             // 通过connection连接，获取输入流
@@ -84,17 +84,17 @@ public class train {
     public String addDish(@RequestParam("photos") MultipartFile file, HttpServletRequest request) throws Exception {
         String path = null;// 文件路径
         double fileSize = file.getSize();
-        System.out.println("文件的大小是"+ fileSize);
+//        System.out.println("文件的大小是"+ fileSize);
 
         byte[] sizebyte=file.getBytes();
-        System.out.println("文件的byte大小是"+ sizebyte.toString());
+//        System.out.println("文件的byte大小是"+ sizebyte.toString());
 
 
 
         if (file != null) {// 判断上传的文件是否为空
             String type = null;// 文件类型
             String fileName = file.getOriginalFilename();// 文件原名称
-            System.out.println("上传的文件原名称:" + fileName);
+//            System.out.println("上传的文件原名称:" + fileName);
             // 判断文件类型
             type = fileName.indexOf(".") != -1 ? fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()) : null;
             if (type != null) {// 判断文件类型是否为空
@@ -108,11 +108,11 @@ public class train {
                     // 设置存放图片文件的路径
                     String save_path = "D:\\programming\\python\\deep-learning-exam\\graduation\\django\\deep\\myapp\\jpg";
                     path = save_path+fileName;
-                    System.out.println("存放图片文件的路径:" + path);
+//                    System.out.println("存放图片文件的路径:" + path);
 
                     // 转存文件到指定的路径
                     file.transferTo(new File(path));
-                    System.out.println("文件成功上传到指定目录下");
+//                    System.out.println("文件成功上传到指定目录下");
 
                     return "文件成功上传到指定目录下";
                 }
@@ -141,6 +141,7 @@ public class train {
 
         String res = doGet(url);
         JSONObject obj=JSON.parseObject(res);
+//        System.out.println(res);
         return obj;
     }
 
@@ -152,7 +153,7 @@ public class train {
     ){
         String url = "http://127.0.0.1:8085/myapp/test/";
         url = url+pic+'/'+dataset_name+'/'+model_name;
-        System.out.println(url);
+//        System.out.println(url);
         String res = doGet(url);
         JSONObject obj=JSON.parseObject(res);
         return obj;

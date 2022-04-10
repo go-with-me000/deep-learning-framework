@@ -157,7 +157,7 @@ export default {
         method: "get",
         params: {
           pic: this.pic_name,
-          model_name: this.data.model_name,
+          model_name: this.data.model_name+'.mdl',
           dataset_name: this.data.dataset_name
         }
       })
@@ -185,14 +185,14 @@ export default {
           isTrain: 0,
           isFirst: 0,
           epoch: 0,
-          model_name: this.data.model_name,
+          model_name: this.data.model_name+'.mdl',
           dataset_name: this.data.dataset_name
         }
       })
         .then(res => {
           console.log(res);
           res.data.test_acc = 100 * res.data.test_acc;
-          res.data.test_acc = parseInt(res.data.best_acc);
+          res.data.test_acc = parseInt(res.data.test_acc);
           this.test_acc = res.data.test_acc;
           this.modal2 = true;
         })
@@ -205,6 +205,7 @@ export default {
       // this.option.series[0].data = [85, 87, 91, 95, 82, 80, 74, 64];
       // this.myChart.setOption(this.option);
       this.model_id = localStorage.getItem("model_id");
+      console.log(this.data.model_name)
       let URL = `${apiPath}/train`;
       axios({
         url: URL,
@@ -213,7 +214,7 @@ export default {
           isTrain: 1,
           isFirst: 1,
           epoch: this.epoch,
-          model_name: this.data.model_name,
+          model_name: this.data.model_name+'.mdl',
           dataset_name: this.data.dataset_name
         }
       })

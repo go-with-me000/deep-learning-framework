@@ -39,7 +39,7 @@ http://127.0.0.1:8085/myapp/train/1/pokeman/pokeman.mdl/0/2
 
 http://127.0.0.1:8085/myapp/train/0/pokeman/pokeman.mdl/0
 
-
+http://127.0.0.1:8085/myapp/train/1/flowers/flower.mdl/1
 
 http://127.0.0.1:8080/train?isTrain=0&isFirst=0&dataset_name=pokeman&model_name=pokeman.mdl
 

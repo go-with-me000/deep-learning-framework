@@ -45,6 +45,7 @@ def main(request,pic, dataset, model_name):
     name2label = load_list(root)
     lens = len(name2label)
     train_model = resnet18(pretrained=True)
+    print(img_path)
     model = nn.Sequential(*list(train_model.children())[:-1],
                           Flatten(),
                           nn.Linear(512, lens),

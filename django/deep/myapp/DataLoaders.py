@@ -10,8 +10,10 @@ from torch.utils.data import Dataset
 abs_path = os.getcwd()
 abs_path = abs_path+'\\myapp\\'
 class DataLoaders(Dataset):
-    def __init__(self, root, resize, mode):
+    def __init__(self,dataset_name, root, resize, mode):
         super(DataLoaders, self).__init__()
+        print(root)
+        self.dataset_name = dataset_name
         self.root = root
         self.resize = resize
         self.name2label = {}
@@ -42,12 +44,19 @@ class DataLoaders(Dataset):
                 images += glob.glob(os.path.join(self.root, name, '*.jpeg'))
 
             random.shuffle(images)
+
             with open(os.path.join(self.root, filename), mode='w', newline='') as f:
+
                 writer = csv.writer(f)
                 for img in images:
                     name = img.split(os.sep)[-2]
+                    test1 = img.split(os.sep)[-1]
                     label = self.name2label[name]
-                    writer.writerow([img, label])
+                    path = self.dataset_name+'\\'+name+'\\'+test1
+                    print("img",img)
+                    print("test1",test1)
+                    print(path)
+                    writer.writerow([path, label])
 
                 print("writen into csv file:", filename)
 

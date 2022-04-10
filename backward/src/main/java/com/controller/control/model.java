@@ -166,7 +166,7 @@ public class model {
             int len = list.size();
             if(len==0){
                 int i = jdbcTemplate.update(sql,  names);
-                System.out.println(names);
+//                System.out.println(names);
             }
         }
         return 1;

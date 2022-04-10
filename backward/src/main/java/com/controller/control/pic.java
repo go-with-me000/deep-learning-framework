@@ -32,12 +32,12 @@ public class pic extends HttpServlet {
     @RequestMapping("/file/uploadss")
     @ResponseBody
     public String uploadPhoto(@RequestParam("pic") MultipartFile pic, HttpServletResponse response) throws IOException {
-        System.out.println(pic);
+//        System.out.println(pic);
 
         /*
          * 编码为字符串*/
         String s = Base64Utils.encodeToString(pic.getBytes());
-        System.out.println("s:"+s);
+//        System.out.println("s:"+s);
 
         /* *
          *2.解码成字节数组
@@ -77,12 +77,12 @@ public class pic extends HttpServlet {
     @RequestMapping("/file/uploadss2")
     @ResponseBody
     public String uploadPhoto2(@RequestParam("pic") MultipartFile pic, HttpServletResponse response) throws IOException {
-        System.out.println(pic);
+//        System.out.println(pic);
 
         /*
          * 编码为字符串*/
         String s = Base64Utils.encodeToString(pic.getBytes());
-        System.out.println("s:"+s);
+//        System.out.println("s:"+s);
 
         /* *
          *2.解码成字节数组

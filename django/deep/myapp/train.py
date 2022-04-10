@@ -125,9 +125,9 @@ def init(model_names, dataset_names):
     global train_db
     global val_db
     global test_db
-    train_db = DataLoaders(dataset_name, 224, mode="train")
-    val_db = DataLoaders(dataset_name, 224, mode="val")
-    test_db = DataLoaders(dataset_name, 224, mode="test")
+    train_db = DataLoaders(dataset_names,dataset_name, 224, mode="train")
+    val_db = DataLoaders(dataset_names,dataset_name, 224, mode="val")
+    test_db = DataLoaders(dataset_names,dataset_name, 224, mode="test")
 
     global train_loader
     global test_loader
