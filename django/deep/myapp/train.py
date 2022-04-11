@@ -10,6 +10,7 @@ from .utils import Flatten
 from .DataLoaders import DataLoaders
 from django.http import HttpResponse, JsonResponse
 from array import *
+from .Lenet5 import Lenet5
 
 batchsz = 32
 lr = 1e-3
@@ -39,17 +40,20 @@ test_db=""
 train_loader = ""
 test_loader = ""
 val_loader = ""
-
+isCuda = True
 # viz = visdom.Visdom()
 def evalute(model, loader):
     correct = 0
     total = len(loader.dataset)
     for x, y in loader:
-        x, y = x.to(device), y.to(device)
+        if isCuda == True:
+            x, y = x.to(device), y.to(device)
         x.squeeze(0)
-
+        # print("x:", x.shape)
+        # print("y:", y.shape)
         with torch.no_grad():
             logits = model(x)
+            # print("logits:",logits.shape)
             pred = logits.argmax(dim=1)
 
         correct += torch.eq(pred, y).sum().float().item()
@@ -65,8 +69,12 @@ def train(model, isFirst,epochs):
     best_acc, best_epoch = 0, 0
     for epoch in range(epochs):
         for step, (x, y) in enumerate(train_loader):
-            x, y = x.to(device), y.to(device)
+            if isCuda==True:
+                x, y = x.to(device), y.to(device)
+            # print("x:", x.shape)
+            # print("y:", y.shape)
             logits = model.forward(x)
+            # print("logits:", logits.shape)
             loss = criteon(logits, y)
             optimizer.zero_grad()
             loss.backward()
@@ -136,19 +144,26 @@ def init(model_names, dataset_names):
     test_loader = DataLoader(test_db, batch_size=batchsz, num_workers=1)
     val_loader = DataLoader(val_db, batch_size=batchsz, num_workers=2)
 
-def main(request, isTrain, dataset_names, model_names, isFirst,epoch):
+def main(request, isTrain, dataset_names, model_names, isFirst,epoch,network):
+    global isCuda
+    if network==1:
+        isCuda=True
+    else:
+        isCuda=False
 
     init(model_names, dataset_names)
     # model = ResNet18(5).to(device)
     root =abs_path+ "dataset\\"+dataset_names
     name2label = load_list(root)
     lens = len(name2label)
-
-    train_model = resnet18(pretrained=True)
-    model = nn.Sequential(*list(train_model.children())[:-1],
-                          Flatten(),
-                          nn.Linear(512, lens),
-                          ).to(device)
+    if network==1:
+        train_model = resnet18(pretrained=True)
+        model = nn.Sequential(*list(train_model.children())[:-1],
+                              Flatten(),
+                              nn.Linear(512, lens),
+                              ).to(device)
+    else:
+        model = Lenet5(lens)
     data =""
     if isTrain == 1:
         data = train(model, isFirst,epoch)

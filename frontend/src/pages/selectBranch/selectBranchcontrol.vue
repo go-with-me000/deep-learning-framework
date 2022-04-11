@@ -28,7 +28,7 @@
       </Header>
       <Layout>
         <Sider :width="180" style="background: #fff;">
-          <div class="info">学号：{{studentNum}}</div>
+          <div class="info">user：{{studentNum}}</div>
           <!-- <div class="info">身份：学生</div> -->
 
           <Menu width="100%" :active-name="fullPath" accordion style="margin-top:10px">
@@ -42,10 +42,10 @@
             </MenuItem>
            
 
-            <MenuItem name="message" to="/select/test">
+            <!-- <MenuItem name="message" to="/select/test">
               <Icon type="md-person" />
               <span>个人信息</span>
-            </MenuItem>
+            </MenuItem> -->
           </Menu>
         </Sider>
         <Content :style="{margin: '15px', background: '#f9fafc'}" class="main;margin-top:-20px;">

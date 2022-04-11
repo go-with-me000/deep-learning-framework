@@ -19,6 +19,7 @@
                 <Col span="6" offset="0 ">准确率：{{item.accuracy}}</Col>
                 <Col span="6" offset="0 ">
                   <Button type="warning"  @click.stop="modal2=true;form1=item">修改模型</Button>
+                  <Button type="error"  @click.stop="deleteM(item.model_id);">删除模型</Button>
                 </Col>
               </Row>
             </div>
@@ -47,7 +48,7 @@
           <FormItem label="神经网络">
             <Select v-model="form1.network">
               <Option value="ResNet18">ResNet18</Option>
-              <Option value="Letnet5">Letnet5</Option>
+              <Option value="Lenet5">Lenet5</Option>
               <Option value="RNN">RNN</Option>
             </Select>
           </FormItem>
@@ -100,7 +101,7 @@
           <FormItem label="神经网络">
             <Select v-model="form1.network">
               <Option value="ResNet18">ResNet18</Option>
-              <Option value="Letnet5">Letnet5</Option>
+              <Option value="Lenet5">Lenet5</Option>
               <Option value="RNN">RNN</Option>
             </Select>
           </FormItem>
@@ -184,6 +185,25 @@ export default {
     refresh() {
       //  this.init();
       this.loadData();
+    },
+    deleteM(model_id){
+         let URL = `${apiPath}/model/delete`;
+      axios({
+        url: URL,
+        method: "get",
+        params: {
+          model_id:model_id
+        }
+      })
+        .then(res => {
+          // console.log(res);
+          
+          this.$Notice.success({ title: `删除成功` });
+          this.loadData();
+        })
+        .catch(err => {
+          this.$Notice.warning({ title: `出错，提示：${err}` });
+        });
     },
     addModal() {
       let URL = `${apiPath}/model/add`;

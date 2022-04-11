@@ -134,10 +134,11 @@ public class train {
                            @RequestParam("isFirst") Integer isFirst,
                             @RequestParam("epoch") Integer epoch,
                            @RequestParam("model_name") String model_name,
-                           @RequestParam("dataset_name") String dataset_name
+                           @RequestParam("dataset_name") String dataset_name,
+                            @RequestParam("network") Integer network
     ){
         String url = "http://127.0.0.1:8085/myapp/train/";
-        url = url+isTrain+'/'+dataset_name+'/'+model_name+'/'+isFirst+'/'+epoch;
+        url = url+isTrain+'/'+dataset_name+'/'+model_name+'/'+isFirst+'/'+epoch+'/'+network;
 
         String res = doGet(url);
         JSONObject obj=JSON.parseObject(res);
@@ -149,10 +150,11 @@ public class train {
     public JSONObject test(
                             @RequestParam("pic") String pic,
                             @RequestParam("model_name") String model_name,
-                            @RequestParam("dataset_name") String dataset_name
+                            @RequestParam("dataset_name") String dataset_name,
+                            @RequestParam("network") Integer network
     ){
         String url = "http://127.0.0.1:8085/myapp/test/";
-        url = url+pic+'/'+dataset_name+'/'+model_name;
+        url = url+pic+'/'+dataset_name+'/'+model_name+'/'+network;
 //        System.out.println(url);
         String res = doGet(url);
         JSONObject obj=JSON.parseObject(res);

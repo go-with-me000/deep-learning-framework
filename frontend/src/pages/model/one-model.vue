@@ -115,7 +115,7 @@ import * as echarts from "echarts";
 export default {
   data() {
     return {
-      already_val:false,
+      already_val: false,
       result: "",
       test_acc: "",
       modal1: false,
@@ -130,7 +130,7 @@ export default {
       train_res: 0,
       fileURL: `${apiPath}/file/uploadss`,
       pic_name: "",
-      pic_pre_path :"/static/images/avatar/",
+      pic_pre_path: "/static/images/avatar/"
     };
   },
   mounted() {
@@ -142,29 +142,34 @@ export default {
     handleAvatarSuccess(res, file) {
       this.pic_name = res;
       this.vals();
-      
     },
     handleRemove(file, fileList) {
       // console.log(file, fileList);
-      this.already_val=false;
+      this.already_val = false;
     },
     vals() {
       let URL = `${apiPath}/test`;
-      console.log(this.pic_name,this.data.model_name,this.data.dataset_name)
-
+      let neural=0
+      // console.log(this.pic_name, this.data.model_name, this.data.dataset_name);
+      if (this.data.network == "ResNet18") {
+        neural = 1;
+      } else {
+        neural = 2;
+      }
       axios({
         url: URL,
         method: "get",
         params: {
           pic: this.pic_name,
-          model_name: this.data.model_name+'.mdl',
-          dataset_name: this.data.dataset_name
+          model_name: this.data.model_name + ".mdl",
+          dataset_name: this.data.dataset_name,
+          network: neural
         }
       })
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.result = res.data.output;
-          this.already_val=true;
+          this.already_val = true;
         })
         .catch(err => {
           this.$Notice.warning({ title: `出错，提示：${err}` });
@@ -178,6 +183,12 @@ export default {
     },
     test() {
       let URL = `${apiPath}/train`;
+      let neural=0
+      if (this.data.network == "ResNet18") {
+        neural = 1;
+      } else {
+        neural = 2;
+      }
       axios({
         url: URL,
         method: "get",
@@ -185,12 +196,13 @@ export default {
           isTrain: 0,
           isFirst: 0,
           epoch: 0,
-          model_name: this.data.model_name+'.mdl',
+          network: neural,
+          model_name: this.data.model_name + ".mdl",
           dataset_name: this.data.dataset_name
         }
       })
         .then(res => {
-          console.log(res);
+          // console.log(res);
           res.data.test_acc = 100 * res.data.test_acc;
           res.data.test_acc = parseInt(res.data.test_acc);
           this.test_acc = res.data.test_acc;
@@ -205,7 +217,13 @@ export default {
       // this.option.series[0].data = [85, 87, 91, 95, 82, 80, 74, 64];
       // this.myChart.setOption(this.option);
       this.model_id = localStorage.getItem("model_id");
-      console.log(this.data.model_name)
+      let neural = 0;
+      // console.log(this.data.model_name);
+      if (this.data.network == "ResNet18") {
+        neural = 1;
+      } else {
+        neural = 2;
+      }
       let URL = `${apiPath}/train`;
       axios({
         url: URL,
@@ -213,38 +231,38 @@ export default {
         params: {
           isTrain: 1,
           isFirst: 1,
+          network: neural,
           epoch: this.epoch,
-          model_name: this.data.model_name+'.mdl',
+          model_name: this.data.model_name + ".mdl",
           dataset_name: this.data.dataset_name
         }
       })
         .then(res => {
-          console.log(res);
+          // console.log(res);
 
           res.data.best_acc = 100 * res.data.best_acc;
           res.data.best_acc = parseInt(res.data.best_acc);
           this.train_res = res.data;
-          this.update_res()
+          this.update_res();
         })
         .catch(err => {
           this.$Notice.warning({ title: `出错，提示：${err}` });
         });
     },
-    update_res(){
-      let model_id = localStorage.getItem("model_id")
-      console.log(model_id, this.train_res)
-       let URL = `${apiPath}/update_res`;
+    update_res() {
+      let model_id = localStorage.getItem("model_id");
+      // console.log(model_id, this.train_res);
+      let URL = `${apiPath}/update_res`;
       axios({
         url: URL,
         method: "get",
         params: {
-          model_id:model_id,
-          train_res:this.train_res.best_acc
+          model_id: model_id,
+          train_res: this.train_res.best_acc
         }
       })
         .then(res => {
-          console.log(res);
-         
+          // console.log(res);
         })
         .catch(err => {
           this.$Notice.warning({ title: `出错，提示：${err}` });
@@ -257,7 +275,7 @@ export default {
           name: "epoch"
         },
         yAxis: {
-          min: 80,
+          min: 60,
           max: 100,
           name: "accuracy"
         },
@@ -282,13 +300,15 @@ export default {
           method: "get"
         })
           .then(res => {
-            console.log(res);
+            // console.log(res);
             let len = res.data.key.length;
             that.nowEpoch = len;
             that.option.series[0].data = res.data.key;
             that.myChart.setOption(that.option);
+            console.log(len)
+            console.log(that.epoch)
             if (len == that.epoch) {
-              console.log("finished");
+              // console.log("finished");
               that.modal1 = true;
               clearInterval(that.interval);
             }
@@ -309,9 +329,9 @@ export default {
         }
       })
         .then(res => {
-          console.log(res);
-          res.data.model_name=res.data.model_name.replace(".mdl","")
-          res.data.pic = this.pic_pre_path+res.data.pic;
+          // console.log(res);
+          res.data.model_name = res.data.model_name.replace(".mdl", "");
+          res.data.pic = this.pic_pre_path + res.data.pic;
           this.data = res.data;
         })
         .catch(err => {
@@ -321,11 +341,7 @@ export default {
   },
   watch: {
     nowEpoch(newVal, oldVal) {
-      // console.log(newVal);
-      // console.log(oldVal);
-      // if (newVal == this.epoch) {
-      //   console.log("1223123");
-      // }
+     
     }
   }
 };

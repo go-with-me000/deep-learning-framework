@@ -11,6 +11,7 @@ from PIL import  Image
 from torchvision.models import resnet18
 from .utils import Flatten
 from django.http import HttpResponse, JsonResponse
+from .Lenet5 import Lenet5
 import sys
 
 # Create your views here.
@@ -23,6 +24,8 @@ img_path = abs_path+"jpg/"
 img_const_path = img_path
 assert os.path.exists(img_path), "files:{} does not exist".format(img_path)
 # img = Image.open(img_path)
+
+isCuda=True
 # plt.imshow(img)
 # # plt.show()
 # img = tf(img)
@@ -37,19 +40,27 @@ def load_list(root):
     print(name2label)
     return name2label
 
-def main(request,pic, dataset, model_name):
+def main(request,pic, dataset, model_name,network):
     # root = "dataset/"+str(sys.argv[2])
+    global isCuda
+    if network == 1:
+        isCuda = True
+    else:
+        isCuda = False
     global img_path
     img_path = img_const_path+pic
     root = abs_path+"dataset/"+dataset
     name2label = load_list(root)
     lens = len(name2label)
     train_model = resnet18(pretrained=True)
-    print(img_path)
-    model = nn.Sequential(*list(train_model.children())[:-1],
-                          Flatten(),
-                          nn.Linear(512, lens),
-                          ).to(device)
+    if network == 1:
+        train_model = resnet18(pretrained=True)
+        model = nn.Sequential(*list(train_model.children())[:-1],
+                              Flatten(),
+                              nn.Linear(512, lens),
+                              ).to(device)
+    else:
+        model = Lenet5(lens)
     model_name = abs_path+'mdl/'+model_name
     model.load_state_dict(torch.load(model_name))
     model.eval()
@@ -68,7 +79,8 @@ def main(request,pic, dataset, model_name):
     image = torch.reshape(img, (1, 3, 224, 224))
 
     with torch.no_grad():
-        image = image.to(device)
+        if isCuda==True:
+            image = image.to(device)
         out = model(image)
         _, predicted = torch.max(out, 1)
         result = predicted.item()
